@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>热身运动作业练习</title>
+	<style>
+		body {
+			padding-left: 50px;
+		}
+		div,p,input {
+			margin:0;
+			padding: 0;
+			border: 0;
+		}
+		.intro p {
+			height: 70px;
+			font: 700 25px "Microsoft YaHei";			
+			line-height: 70px;
+		}
+		.intro p input {
+			height: 30px;
+			padding: 0 10px 0 10px;
+			color: white;
+			font: 700 14px/30px Microsoft YaHei;
+			background-color: red;
+			vertical-align: middle;
+		}
+		.demo {
+			height: 100px;
+			width: 100px;
+			border: 3px solid black;
+		}
+		#bg {
+			width: 100%;
+			height: 100%;
+			background: rgba(0,0,0,0.5);
+			display:none;
+			position: absolute;
+			top:0;
+			left:0;
+		}
+		.operate {
+			width: 300px;
+			height: 200px;
+			margin: 0 auto;
+			border: 20px solid #ccc;
+			padding-top: 15px;
+			padding-left: 40px;
+			position: absolute;
+			left: 40%;
+			top: 40%;
+			margin-left: -50px;
+			background: #fff;
+		}
+		.operate p {
+			height: 50px;
+			line-height: 50px;
+		}
+		.operate p input {
+			height: 30px;
+			width: 40px;
+			vertical-align: middle;
+			margin-bottom: 10px;
+		}
+		.operate #red {
+			background-color: red;
+		}		
+		.operate #yellow {
+			background-color: yellow;
+		}		
+		.operate #blue {
+			background-color: blue;
+		}
+		.operate #four input {
+			background-color: purple;
+			width: 60px;
+			color: white;
+			margin-left: 45px;
+		}
+
+	</style>
+</head>
+<body>
+	<div class="intro">
+		<p>请为下面的DIV方框设置样式：<input id="set" type="button" value="点击设置"></p>
+	</div>
+	<div class="demo" id="demo"></div>
+	<div id="bg">
+		<div class="operate" id="operate">
+			<p id="one">请选择背景颜色：
+			<input id="red" type="button" value="红" title="red">
+			<input id="yellow" type="button" value="黄" title="yellow">
+			<input id="blue" type="button" value="蓝" title="blue"></p>
+			<p id="two">请选择宽度(px)：
+			<input type="button" value="200" title="200">
+			<input type="button" value="300" title="300">
+			<input type="button" value="400" title="400"></p>		
+			<p id="three">请选择高度(px)：
+			<input type="button" value="200" title="200">
+			<input type="button" value="300" title="300">
+			<input type="button" value="400" title="400"></p>
+			<p id="four"><input id="reset" type="reset" value="恢复">
+			<input id="yes" type="button" value="确定"></p>
+		</div>
+	</div>
+
+	<script>
+		var set=document.getElementById("set");
+		var bg=document.getElementById("bg");
+		var yes=document.getElementById("yes");
+		var reset=document.getElementById("reset");
+		var demo=document.getElementById("demo");
+		var input=bg.getElementsByTagName("input")
+
+		set.onclick=function() {
+			bg.style.display="block";
+		};		
+		yes.onclick=function() {
+			bg.style.display="none";
+		};
+		for (var i=0 ; i<3; i++) {
+			input[i].onclick=function() {
+				demo.style.backgroundColor=this.title
+			};			
+			input[i+3].onclick=function() {
+				demo.style.width=this.title+"px"
+			};			
+			input[i+6].onclick=function() {
+				demo.style.height=this.title+"px"
+			};
+		}
+		reset.onclick=function() {
+			demo.style.height="100px";
+			demo.style.width="100px";
+			demo.style.background="white";	
+		}	
+	</script>
+</body>
+</html>
