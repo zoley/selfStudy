@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>for循环应用--需求2</title>
+	<!-- 用定位的方式解决 -->
+	<style>
+		/*ul{width: 600px;}*/
+		li {width: 50px;height: 50px;font-size:25px;line-height: 50px;text-align: center;background-color: red;list-style: none;position: absolute;}
+	</style>
+	<script>
+		window.onload=function() {
+			var oBtn=document.getElementById("btn");
+			var oUl=document.getElementById("list");
+			var aLi=oUl.getElementsByTagName("li");
+			var aColor=["red","orange","yellow","green","cyan","blue","purple"]
+			// var num=-1;
+			oBtn.onclick=function() {
+				oBtn.disabled=true;
+				for(var i=0;i<100;i++) {
+					// if(i%10==0) {
+				// 	oUl.innerHTML+="<br/>"+"<li>"+i+"</li>"
+					// }else{	
+					oUl.innerHTML+="<li>"+i+"</li>";
+					
+					// num++;
+					// if(num<aColor.length) {
+					// 	aLi[i].style.backgroundColor=aColor[num];
+					// }else{
+					// 	num=0;
+					// 	aLi[i].style.backgroundColor=aColor[num];
+					// }
+					// 简写
+					// num%=7;
+					// aLi[i].style.backgroundColor=aColor[num];
+					// 再简化，把num去掉！
+					aLi[i].style.backgroundColor=aColor[i%7];
+					
+					aLi[i].style.left=50+(i%10)*60+"px";
+					aLi[i].style.top=50+parseInt(i/10)*60+"px";
+				}
+			}
+		}
+	</script>
+</head>
+<body>
+	<!-- 
+		需求：  1.自动生成十个li标签
+				2.自动生成100个li标签，并且十个换行
+				3.自动生成V字形
+				4.自动生成V字形提高版
+			-->
+			<input type="button" id="btn" value="自动生成100个标签">
+			<ul id="list"></ul>
+
+
+		</body>
+		</html>

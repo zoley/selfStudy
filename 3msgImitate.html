@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>手机短信模拟</title>
+	<style>
+		body,div,img,input{margin:0;padding: 0;border:none;}
+		#wrap {
+			width: 300px;height: 600px;background: url(img/iphone.png) no-repeat;margin: 0 auto;overflow: hidden;
+		}
+		#window {
+			margin: 102px 0 0 34px;width: 229px;height: 408px;border:2px solid black;overflow: hidden;
+		}
+		#msg {
+			width: 219px;height: 362px;border-bottom: 1px solid gold;padding:5px;overflow: auto;
+		}
+		#main {
+			width: 224px;height:30px;background:white;padding-top: 5px;padding-left:5px;
+		}
+		img {
+			width: 25px;height: 25px;vertical-align: middle;
+		}
+		#text {
+			width: 150px;height: 24px;border: 1px solid #ccc;line-height: 23px;
+		}
+		#send {
+			width: 27px;height: 25px;background-color: #fff;font-weight: 900;color:grey;
+		}
+		.right{background-color:green;display: inline-block;font:13px SimSun; margin-right: 5px;float: right;padding:auto 5px;margin:5px auto;}
+		.left{background-color: silver;display: inline-block;font:13px SimSun;margin-left:5px;padding:auto 5px;margin:5px auto;}
+	</style>
+	<script>
+		window.onload=function () {
+			var oMsg=document.getElementById("msg");
+			var oHeadPic=document.getElementById("headpic");
+			var oText=document.getElementById("text");
+			var oSend=document.getElementById("send");
+			var oMsg=document.getElementById("msg");
+			var arrP=["img/head1.jpg","img/head2.jpg","img/head3.GIF","img/head4.GIF"];
+			var i=true;
+			var message="";
+			function expression() {
+				if(i){
+					oHeadPic.src=arrP[0];
+				}else{
+					oHeadPic.src=arrP[1];
+				}
+				i=!i;
+			}
+			
+			oHeadPic.onclick=function() {
+				expression();
+			};	
+			expression();
+			oSend.onclick=function () {
+				oMsg.innerHTML="";
+				if(oText.value=="") {
+					alert("请输入内容！")
+				}else{
+					if (i==false) {
+						oMsg.innerHTML="<div class='right'>"+oText.value+"  "+"<img src='img/head1.jpg'/>"+"</div>"+"<br/>"+message	
+					}else{
+						oMsg.innerHTML="<div class='left'>"+"<img src='img/head2.jpg'/>"+"  "+oText.value+"</div>"+"<br/>"+message					
+					}
+					oText.value="";
+					message=oMsg.innerHTML;
+				}
+			}
+		}
+	</script>
+
+</head>
+<body>
+	<div id="wrap">
+		<div id="window">
+			<div id="msg"></div>
+			<div id="main">		
+				<img id="headpic" alt="" >
+				<input id="text" type="text">
+				<input id="send" type="button" value="发送">
+			</div>
+		</div>
+	</div>
+</body>
+</html>

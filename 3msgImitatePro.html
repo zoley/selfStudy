@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>手机短信模拟</title>
+	<style>
+		body,div,img,input{margin:0;padding: 0;border:none;}
+		#wrap {
+			width: 300px;height: 600px;background: url(img/iphone.png) no-repeat;margin: 0 auto;overflow: hidden;
+		}
+		#window {
+			margin: 102px 0 0 34px;width: 229px;height: 408px;border:2px solid black;overflow: hidden;
+		}
+		#msg {
+			width: 219px;height: 332px;padding:5px;overflow: auto;
+		}
+		#main {
+			width: 224px;height:30px;background:white;padding-top: 5px;padding-left:5px;
+		}
+		img {
+			width: 25px;height: 25px;vertical-align: middle;border:1px solid #999;border-radius:5px;
+		}
+		#text {
+			width: 150px;height: 24px;border: 1px solid #ccc;border-radius:5px;line-height: 23px;
+		}
+		#send {
+			width: 27px;height: 25px;background-color: #fff;font-weight: 900;color:grey;
+		}
+		.li {padding:5px 0;width: 100%;list-style: none;}
+		.right{float:right;}
+		.left{float:left;}
+		span{word-wrap: break-word;word-break: break-all;display:inline-block;max-width:155px;font-size: 13px;line-height: 25px;position:relative;padding:0 5px;}
+		.li span.right{background-color:greenyellow;margin-right:8px;}				
+		.li span.right:after{content:"";height: 0;width: 0;border:7px solid transparent;border-left:7px solid greenyellow;position:absolute;top:6px;right:-14px;}				
+		.li span.left{background-color: white;margin-left:8px;}
+		.li span.left:before{content:"";height: 0;width: 0;border:7px solid transparent;border-right:7px solid white;position:absolute;top:6px;left:-14px;}
+		.clearfix:after{clear: both;content:"";height: 0;line-height:0;display:block;visibility: hidden;}
+		.clearfix{zoom:1;}
+	</style>
+	<script>
+		window.onload=function () {
+			var oMsg=document.getElementById("msg");
+			var oHeadPic=document.getElementById("headpic");
+			var oText=document.getElementById("text");
+			var oSend=document.getElementById("send");
+			var arrP=["img/head1.jpg","img/head2.jpg","img/head3.GIF","img/head4.GIF"];
+			var i=true;
+			var message="";
+			function expression() {
+				if(i){
+					oHeadPic.src=arrP[0];
+					i=false;
+				}else{
+					oHeadPic.src=arrP[1];
+					i=true;
+				}
+			}
+			
+			oHeadPic.onclick=function() {
+				expression();
+			};	
+			expression();
+			oSend.onclick=function () {
+				var oMsg=document.getElementById("msg");
+				// oMsg.innerHTML="";
+				if(oText.value=="") {
+					alert("请输入内容！")
+				}else{
+					if (i==false) {
+						oMsg.innerHTML="<li class='li clearfix'><img class='right' src='img/head1.jpg'/><span class='right'>"+oText.value+"</span></li>"+""+oMsg.innerHTML
+					}else{
+						oMsg.innerHTML="<li class='li clearfix'><img class='left' src='img/head2.jpg'/><span class='left'>"+oText.value+"</span></li>"+""+oMsg.innerHTML		
+					}
+					oText.value="";
+					// message=oMsg.innerHTML;
+				}
+			}
+		}
+	</script>
+
+</head>
+<body>
+	<div id="wrap">
+		<div id="window">
+			<ul id="msg"></ul>
+			<div id="main">		
+				<img id="headpic" alt="" >
+				<input id="text" type="text">
+				<input id="send" type="button" value="发送">
+			</div>
+		</div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>图片轮播效果演示</title>
+	<style>
+		body {background-color: silver;}
+		.top {width: 500px;height: 200px;border:1px solid transparent; margin:0 auto; text-align: center;}
+		div#main {
+			width: 500px;height: 350px;border: 5px solid #ccc;margin: 0 auto;position:relative;
+		}
+		div a {
+			width: 50px;height: 50px;position: absolute;font:900 30px/50px SimSun;top:150px;color:white;background-color: #000;opacity: 0.3;filter: alpha(opacity=30);text-decoration: none;text-align: center;
+		}
+		a:hover{
+			opacity: 0.8;filter: alpha(opacity=80);
+		}
+		#prev {
+			left:0;
+		}
+		#next {
+			right:0;
+		}
+		span {
+			position:absolute;width: 500px;height: 50px;font:20px/50px Microsoft YaHei;opacity: 0.4;filter: alpha(opacity=40);background-color: #000;text-align: center;color:white;
+		}
+		#upspan {
+			top:0;
+		}
+		#downspan {
+			bottom: 0;
+		}
+		img {
+			width: 500px;height: 350px;position:absolute;z-index:-1;
+		}
+	</style>
+	<script>
+		window.onload=function() {
+			var oPrev=document.getElementById("prev");
+			var oNext=document.getElementById("next");
+			var oImg=document.getElementById("img");
+			var oUpSpan=document.getElementById("upspan");
+			var oDownSpan=document.getElementById("downspan");
+			var arrPic=["img/mm (1).jpg","img/mm (2).jpg","img/mm (3).jpg","img/mm (4).jpg","img/mm (5).jpg"];
+			var arrExp=["美眉A","美眉B","美眉C","美眉D","美眉E"];
+			var i=0;
+			function mmShow() {
+				oUpSpan.innerHTML=i+1+"/"+arrPic.length;
+				oImg.src=arrPic[i];
+				oDownSpan.innerHTML=arrExp[i];
+			} 
+			mmShow();
+
+			var oXun=document.getElementById("xun");
+			var oShun=document.getElementById("shun");
+			var oP=document.getElementById("text");
+			var arrP=["图片可以从最后一张跳转到第一张循环切换","图片只能到最后一张切换或者第一张切换"]
+
+			function xunhuan() {
+				oP.innerHTML=arrP[0];
+				oNext.onclick=function() {
+					i++;
+					if(i==arrPic.length) {
+						i=0;
+					}
+					mmShow();
+				};
+				oPrev.onclick=function() {
+					i--;
+					if(i==-1) {
+						i=4;
+					}
+					mmShow();
+				};
+			}
+
+			function shunxu() {
+				oNext.onclick=function() {
+					i++;
+					if(i>arrPic.length-1) {
+						alert("别点了已经是最后一个了");
+						i=4;
+					}
+					mmShow();
+				};
+				oPrev.onclick=function() {
+					i--;
+					if(i<0) {
+						alert("别点了这是第一个");	
+						i=0;
+					}
+					mmShow();
+				};
+			}
+
+			oXun.onclick=function () {	
+				xunhuan();
+			};
+			oShun.onclick=function () {
+				oP.innerHTML=arrP[1];
+				shunxu();
+			};
+			xunhuan();
+
+		}
+	</script>
+</head>
+<body>
+	<div class="top">
+		<h1>图片轮播效果演示</h1>
+		<p>
+			<input id="xun" type="button" value="循环切换">
+			<input id="shun" type="button" value="顺序切换">
+		</p><br>
+		<p id="text"></p>
+	</div>
+	<div id="main">
+		<a id="prev" href="javascript:;"><</a>
+		<a id="next" href="javascript:;">></a>
+		<img id="img" >
+		<span id="upspan" >数据正在加载中~~~</span>
+		<span id="downspan">图片正在赶来的路上~~~</span>
+	</div>
+
+
+</body>
+</html>
